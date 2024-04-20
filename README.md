@@ -12,6 +12,7 @@
   - [Setup and Configuration](#setup-and-configuration)
   - [Getting Started](#getting-started)
   - [Usage](#usage)
+  - [Written Analysis](#written-analysis)
   - [Contributing](#contributing)
     
 ## Abstract
@@ -57,6 +58,13 @@ cd DC_Water_Asset_Management
         - directory of idea generation files including assignment requirements, project abstract, descriptive Power Points, and our organizational flow chart.
     2_resource
         - contains resource directories for the various working files, each directory pertaining to different areas of the project (pipe flow, labor cost, and machine learning predictions)
+            - flow_data directory contains:
+                - .csv files containing pipe flow data for each pipe segment jurisidiction for use in flow_share_calc.ipynb
+                - excel files for SQL preprocessing
+                - preprocessed SQL files
+            - maximo_labor_hour
+                - SQL preprocessing data for labor hour calculations
+                - Maximo_download.csv for use in Inspection_labor_hour.csv
     3_codes
         - working file directory containing the primary jupyter notebooks:
             -flow_share_calc.ipynb
@@ -74,7 +82,7 @@ cd DC_Water_Asset_Management
 - explain SQL processing (flow share and labor share) to .csv to use for use in Pandas processing and machine learning prediction models.
 
 - In pandas, flow and cost analysis used to calculate user cost share and determine the cost impact in the event of pipe collapse.
-    - describe flow_share_calc.ipynb
+    - Analysis of Jurisdictional Flow share from: flow_share_calc.ipynb
         - Import Dependencies:
         import os
         import pandas as pd
@@ -110,25 +118,72 @@ cd DC_Water_Asset_Management
 
 ### Data Retrieval and Processing
 
-
+## Presentation
+Presentation containing executive summary, overview of data, aproach to goals, conclusions, and next steps
 ## Written Analysis
 ### Data Analysis
+#### Flow processing:
 
+#### Labor hour processing:
+
+
+
+#### Risk Prediction (Machine Learning)
+Using supervised machine learning, we used the data from our Inspectionlist3.csv file, separating our 'risk score' from the other features which included: 
+- Seg_ID (ID of each pipe segement)
+- UP_MH ()
+- DS_MH ()
+- Dia_Inch (pipe diameter in inches)
+- Shape (pipe shape)
+- Material (the material each pipe segment was constructed from)
+- Length_Ft (pipe length in feet)
+- MWL ()
+- DS ()
+- defects (note of any damage to pipe structure)
+- Video Quality (quality of the investigative footage of pipe structure)
+- Jurisdiction (which jurisdiction (city, county or district) the pipe segement belonged to)
+- Inspection_cycle (how often inspections were required for compromised pipes)
+- route (the route of water flow)
+
+We used 'risk score' to populate our variable 'y' and the features listed above to populate our features variable, 'X.'
+Then encoded our categorical variables with pd.get_dummies()
+
+[image here]
+
+and split our data into training and testing sets.
+
+[image here]
+
+We then used the StandardScaler() to scale our data to fit the model and used the KNeighborClassifier() where the number of neighbors was =3 to train our model and fit our model based on the training data.
+
+[Image here]
+
+Prediction and Classification Report: describe low accuracy and fi-scores.
+
+[Image here]
+
+With our initial prediction model looking we, we resampled our data using imbalanced learning SMOTE to "create new(artificial) trainging examples based on the original training examples"(Altaf Khan from [link] quora.com) and reran our classification report. This yielded better results with greater precision and recall scores. Our accuracy scores also improved from 0.62 to 0.78 and where we'd had fi-scores as low as 0.45, our lowest was now 0.65.
+
+[image here]
+
+We then ran our confusion matrix for this resampled model which did show some noise but was more accuracte than our previous.
+
+[image here]
+
+Further steps: For better risk prediction models we could use more statistical data and be more selective about features used in the model. If 'Video Quality' does not factor into pipe condidition it may not be necessary to consider it in future risk prediction models. We could also run other configurations for future imbalanced learning models to see if any of those yield more favorable results.
 
 ### Data Visualization
 
 
 
 ## Contributing 
-{who can contribute to this project}
+This project was created for learning purposes and is not open for contribution.
 
 ## Authors and acknowledgement
 Eyasu Yilma and Erin Cooper
 
-## Presentation
-Presentation containing executive summary, overview of data, aproach to goals, conclusions, and next steps
-
 ### Notes and Challenges
+
 
 ## Contact
 For questions about this project:
