@@ -149,31 +149,22 @@ Using supervised machine learning, we used the data from our Inspectionlist3.csv
 - route (the route of water flow)
 
 We used 'risk score' to populate our variable 'y' and the features listed above to populate our features variable, 'X.'
-Then encoded our categorical variables with pd.get_dummies()
-
-- Read the CSV file into a Pandas DataFrame
-df = pd.read_csv(
-    Path('../2_resource/ml_inspection_data/InspectionList3.csv')   
-)
-
-- Review the DataFrame
-df
 
 ![ML_dia_1](image-1.png)
 
-and split our data into training and testing sets.
+Then encoded our categorical variables with pd.get_dummies() and split our data into training and testing sets.
 
-[image here]
+![ML_dia_2](image-7.png)
 
 We then used the StandardScaler() to scale our data to fit the model and used the KNeighborClassifier() where the number of neighbors was =3 to train our model and fit our model based on the training data.
 
-[Image here]
+![ML_dia_3](image-9.png)
 
 Prediction and Classification Report: describe low accuracy and fi-scores.
 
-[Image here]
+![ML_dia_4](image-10.png)
 
-With our initial prediction model looking we, we resampled our data using imbalanced learning SMOTE to "create new(artificial) trainging examples based on the original training examples"(Altaf Khan from [link] quora.com) and reran our classification report. This yielded better results with greater precision and recall scores. Our accuracy scores also improved from 0.62 to 0.78 and where we'd had fi-scores as low as 0.45, our lowest was now 0.65.
+With our initial prediction model looking we, we resampled our data using imbalanced learning SMOTE (Synthetic Minority Oversampling Technique) to "create new(artificial) training examples based on the original training examples"(Altaf Khan from [link] quora.com) and reran our classification report. This yielded better results with greater precision and recall scores. Our accuracy scores also improved from 0.62 to 0.78 and where we'd had fi-scores as low as 0.45, our lowest was now 0.65.
 
 [image here]
 
@@ -184,7 +175,7 @@ We then ran our confusion matrix for this resampled model which did show some no
 Further steps: For better risk prediction models we could use more statistical data and be more selective about features used in the model. If 'Video Quality' does not factor into pipe condidition it may not be necessary to consider it in future risk prediction models. We could also run other configurations for future imbalanced learning models to see if any of those yield more favorable results.
 
 #### Flow Share Calculation (with SQL and Python Pandas):
-We took our data from several sources. For labour hours per distinct job we used time keeping data from IBM Maximo. We also used the each user jurisdiction's Flow Report, the DC Water Asset Database and took our pipe inspection data from consultant and contractor reports.
+We took our data from several sources. For labour hours per distinct job we used time keeping data from IBM Maximo. We also used the each user jurisdiction's Flow Report, the DC Water Asset Database, and took our pipe inspection data from consultant and contractor reports.
 
 ![FS_datasource](image-5.png)
 
