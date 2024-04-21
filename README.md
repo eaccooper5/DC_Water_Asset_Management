@@ -1,8 +1,5 @@
-# DC_Water_Asset_Management
+# DC Water Asset Management
 ## Project 4
-
-## Project Name:
-### DC Water Asset Management
 
 ## Table of Contents
   - [Project Name](#Economic Trends in Emerging Market and Developing Economies)
@@ -12,7 +9,7 @@
   - [Setup and Configuration](#setup-and-configuration)
   - [Getting Started](#getting-started)
   - [Usage](#usage)
-  - [Written Analysis](#written-analysis)
+  - [Presentation](#presentation)
   - [Contributing](#contributing)
     
 ## Abstract
@@ -25,8 +22,8 @@ We selected District Suburban Jurisdictions for our pipe samples. These jurisdic
 We will use Leaflet to create a map to highlight user jurisdictions and their pipe segments.  We will preprocess and filter data downloaded from Maximo (IBM Asset Management Software) and DC Water and user jurisdiction’s reports using SQL. Once the data is filtered and preprocessed, it will be downloaded as  a .csv file for use by the Pandas Python for flow, and share calculation.  Using jurisdictional flow and pipe condition data from the DC Water Report, we will use machine learning to predict the frequency of inspection cycles and risk per location. Combining this with timekeeping data from IBM Maximo we will determine the shared cost impact to the jurisdictions that we predict would be most affected by a pipe collapse.
 
 ## Prerequisites
-#### Listed here are the languages and libraries required for this project.
-​
+#### Listed here are the languages and libraries required for this project:
+
 - **SQL:** 
     (PostgreSQL with pgAdmin Download)[https://www.enterprisedb.com/downloads/postgres-postgresql-downloads]
 - **Python:** 
@@ -39,10 +36,7 @@ We will use Leaflet to create a map to highlight user jurisdictions and their pi
     - scikit-learn: (Documentation for scikit-learn installation)[https://scikit-learn.org/stable/install.html]
 
 ## Usage
-### Setup and Configuration
-SQL data retrieval. Data processed by joining tables into usable .csv files for processing.
 
-​
 ### Getting Started
 
 Clone this project's repo to your local computer:
@@ -78,7 +72,14 @@ cd DC_Water_Asset_Management
         - contains the .csv outputs to use in our visualisations and relevant image files/visualisation files.
 
 ### Steps to complete
-- create Leaflet map to introduce 
+### Setup and Configuration
+SQL data retrieval. 
+Upload in SQL
+Join using location ID
+export to .csv
+import into Python pandas​
+- create Leaflet map to introduce Potomac Interceptor
+
 - explain SQL processing (flow share and labor share) to .csv to use for use in Pandas processing and machine learning prediction models.
 
 - In pandas, flow and cost analysis used to calculate user cost share and determine the cost impact in the event of pipe collapse.
@@ -111,22 +112,24 @@ cd DC_Water_Asset_Management
 
 - results from data processing and machine learning used to make visualisations in Tableau
 
-​
-
-​
-
 
 ### Data Retrieval and Processing
 
-## Presentation
-Presentation containing executive summary, overview of data, aproach to goals, conclusions, and next steps
-## Written Analysis
-### Data Analysis
-#### Flow processing:
+## Presentation 
+#### Introduction
+DC Water asset, the Potomac Interceptor, is a 50 mile long series of pipes that brings water to 1.6 million people from Fairfax, VA to parts of DC and Mongomery County, MD. When a pipe segment is damaged or degrades to the point that it is no longer safe it can be expensive to repair and the costs of those repairs might be shared between jurisdictions depending on whether or not that pipe segment shares territor with a neighbor. Our project took a look at Patomac Interceptor pipe system in order to predict risk to critial water assets and determine the cost impact to various user jurisdictions.
 
-#### Labor hour processing:
+As pictured in the flow chart below, we used SQL to join labor data from IBM Maximo and water flow data from the DC Water Report to calculate flow per user labor hours per location. We then exported that data for use in our cost and flow share analysis and our machine learning risk prediction model per location and created vizualiztions in Tableau.
 
+![DC_Water_Flow_Chart](image-2.png)
 
+We also produced a Leaflet map of the manholes serving each pipe segment with popups displaying each segment's coordinates as well as the length, slope, and pipe diameter over the entire selected water flow route.
+
+![Leaflet_popup](image-3.png)
+
+And the following chart lays out where each jurisdiction meets up along the length of the Potomac Interceptor's route, starting in Dulles and branching into Herndon, Montgomery County, MD, and into the District and what manholes specifically delineate those borders. Each branch is numbered. These are the primary flow divisions in our data and will be used to calculate cost and flow share and the pipe inspection data will be used to populate our risk prediction model.
+
+![jurisdiction_chart](image-4.png)
 
 #### Risk Prediction (Machine Learning)
 Using supervised machine learning, we used the data from our Inspectionlist3.csv file, separating our 'risk score' from the other features which included: 
@@ -148,7 +151,15 @@ Using supervised machine learning, we used the data from our Inspectionlist3.csv
 We used 'risk score' to populate our variable 'y' and the features listed above to populate our features variable, 'X.'
 Then encoded our categorical variables with pd.get_dummies()
 
-[image here]
+- Read the CSV file into a Pandas DataFrame
+df = pd.read_csv(
+    Path('../2_resource/ml_inspection_data/InspectionList3.csv')   
+)
+
+- Review the DataFrame
+df
+
+![ML_dia_1](image-1.png)
 
 and split our data into training and testing sets.
 
@@ -172,12 +183,41 @@ We then ran our confusion matrix for this resampled model which did show some no
 
 Further steps: For better risk prediction models we could use more statistical data and be more selective about features used in the model. If 'Video Quality' does not factor into pipe condidition it may not be necessary to consider it in future risk prediction models. We could also run other configurations for future imbalanced learning models to see if any of those yield more favorable results.
 
+#### Flow Share Calculation (with SQL and Python Pandas):
+We took our data from several sources. For labour hours per distinct job we used time keeping data from IBM Maximo. We also used the each user jurisdiction's Flow Report, the DC Water Asset Database and took our pipe inspection data from consultant and contractor reports.
+
+![FS_datasource](image-5.png)
+
+We preprocessed and filtered the data by first uploading it into SQL and joining tables using "location ID." Then we exported that data to .csv and imported it into Python Pandas for further processing.
+
+![FS_preprocessing](image-6.png)
+
+overview of data, 
+
+approach to goals, 
+
+conclusions, and 
+
+next steps
+
+
+
+## Written Analysis
+### Data Analysis
+#### Flow processing:
+
+
+#### Labor hour processing:
+
+
 ### Data Visualization
 
 
 
+
+
 ## Contributing 
-This project was created for learning purposes and is not open for contribution.
+This project was created for learning purposes and is not currently open for contribution.
 
 ## Authors and acknowledgement
 Eyasu Yilma and Erin Cooper
