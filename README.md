@@ -75,16 +75,14 @@ cd DC_Water_Asset_Management
 
 ### Steps to complete
 ### Setup and Configuration
-SQL data retrieval. 
-Upload in SQL
-Join using location ID
-export to .csv
-import into Python pandas​
-- create Leaflet map to introduce Potomac Interceptor
+1. SQL data retrieval. 
+    - Upload in SQL
+    - Join using location ID
+    - export to .csv
+    - import into Python pandas​
+2. Create a Leaflet map to introduce the Potomac Interceptor water asset.
 
-- explain SQL processing (flow share and labor share) to .csv to use for use in Pandas processing and machine learning prediction models.
-
-- In pandas, flow and cost analysis used to calculate user cost share and determine the cost impact in the event of pipe collapse.
+3. In pandas, flow and cost analysis used to calculate user cost share and determine the cost impact in the event of pipe collapse.
     - Analysis of Jurisdictional Flow share from: flow_share_calc.ipynb
         - Import Dependencies:
         import os
@@ -110,15 +108,15 @@ import into Python pandas​
         - calculate the average hourly cost per route
 
 
-- flow and pipe condition data preprocessed to populate risk prediction machine learning model.
+4. Use the preprocessed flow and pipe condition data to populate a risk prediction machine learning model.
 
-- results from data processing and machine learning used to make visualisations in Tableau
+5. Take the results from flow share data and machine learning to make visualisations in Tableau
 
 
 ### Data Retrieval and Processing
 
 #### Introduction
-DC Water asset, the Potomac Interceptor, is a 50 mile long series of pipes that brings water to 1.6 million people from Fairfax, VA to parts of DC and Mongomery County, MD. When a pipe segment is damaged or degrades to the point that it is no longer safe it can be expensive to repair and the costs of those repairs might be shared between jurisdictions depending on whether or not that pipe segment shares territor with a neighbor. Our project took a look at Potomac Interceptor pipe system in order to predict risk to critial water assets and determine the cost impact to various user jurisdictions.
+DC Water asset, the Potomac Interceptor, is a 50 mile long series of pipes that brings water to 1.6 million people from Fairfax, VA to parts of DC and Mongomery County, MD. When a pipe segment is damaged or degrades to the point that it is no longer safe it can be expensive to repair and the costs of those repairs might be shared between jurisdictions depending on whether or not that pipe segment shares territory with a neighbor. Our project took a look at Potomac Interceptor pipe system in order to predict risk to critial water assets and determine the cost impact to various user jurisdictions.
 
 As pictured in the flow chart below, we used SQL to join labor data from IBM Maximo and water flow data from the DC Water Report to calculate flow per user labor hours per location. We then exported that data for use in our cost and flow share analysis and our machine learning risk prediction model per location and created vizualiztions in Tableau.
 
@@ -166,7 +164,7 @@ Prediction and Classification Report: describe low accuracy and fi-scores.
 ![ML_dia_4](image-10.png)
 ![ML_CM](image-16.png)
 
-With our initial prediction model looking we, we resampled our data using imbalanced learning SMOTE (Synthetic Minority Oversampling Technique) to "create new(artificial) training examples based on the original training examples"(Altaf Khan from (quora.com)[https://qr.ae/psMpoX]) and reran our classification report. This yielded better results with greater precision and recall scores. Our accuracy scores also improved from 0.74 to 0.78 and where we'd had fi-scores as low as 0.45, our lowest is now 0.65.
+With our initial prediction model looking weak, we resampled our data using imbalanced learning SMOTE (Synthetic Minority Oversampling Technique) to "create new(artificial) training examples based on the original training examples"(Altaf Khan from (quora.com)[https://qr.ae/psMpoX]) and reran our classification report. This yielded better results with greater precision and recall scores. Our accuracy scores also improved from 0.74 to 0.78 and where we'd had fi-scores as low as 0.45, our lowest is now 0.65.
 
 ![ML_SMOTE](image-17.png)
 
@@ -253,6 +251,7 @@ Finally, we have our Mean Water Level map where, again, red and orange indicate 
 
 ![Tableau image of four jurisdiction flow share maps](<Share MP.png>)
 
+Next up we have heatmaps that demonstrate our flow share routes where dark green indicates the smallest share percentage and the red indicates the largest. The length of populated manhole points indicates the length of that jurisdiction's responsibilty. For example, Fairfax shares costs with all other jurisdictions on the map but Montgomery County only shares responsibility for those pipes that span from Great Falls to Brookmont.
 
 ![Tableau image of compared risk score and cost of risk](<Risk Comparisons.png>)
 
