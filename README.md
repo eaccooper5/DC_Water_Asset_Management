@@ -34,6 +34,8 @@ We will use Leaflet to create a map to highlight user jurisdictions and their pi
 - **Additional libraries:** 
     - pandas: (Documentation for Anaconda installation)[https://docs.anaconda.com/free/anaconda/install/]
     - scikit-learn: (Documentation for scikit-learn installation)[https://scikit-learn.org/stable/install.html]
+    - imbalanced-learn: (Documentation for imbalanced-learn installation)[https://imbalanced-learn.org/stable/]
+        - This project requires SMOTE Version 0.12.2: (SMOTE documentation)[https://imbalanced-learn.org/stable/references/generated/imblearn.over_sampling.SMOTE.html]
 
 ## Usage
 
@@ -115,7 +117,6 @@ import into Python pandas​
 
 ### Data Retrieval and Processing
 
-## Presentation 
 #### Introduction
 DC Water asset, the Potomac Interceptor, is a 50 mile long series of pipes that brings water to 1.6 million people from Fairfax, VA to parts of DC and Mongomery County, MD. When a pipe segment is damaged or degrades to the point that it is no longer safe it can be expensive to repair and the costs of those repairs might be shared between jurisdictions depending on whether or not that pipe segment shares territor with a neighbor. Our project took a look at Patomac Interceptor pipe system in order to predict risk to critial water assets and determine the cost impact to various user jurisdictions.
 
@@ -184,34 +185,44 @@ We preprocessed and filtered the data by first uploading it into SQL and joining
 ![FS_preprocessing](image-6.png)
 
 District Flow data includes:
-- user
+- user (jurisidation)
 - flow_route
 - Flow_length
 - flow_route_name
 - sewersheds
-- pop
-- emp
-- visitor
+- pop (resident population)
+- emp (employee population)
+- visitor (tourist population)
 - area_acres
-- infilt_InchMile
-- Infil_mgdinchMile
-- infil_MGD
-- pro_infiltration_rate
-- storm_mgd
-- sanitary_mgd
-- high_user_mgd
-- ground_water_pumpage
+- infilt_InchMile (area of infiltration)
+- Infil_mgdinchMile (rate of infiltration)
+- infil_MGD (water from )
+- pro_infiltration_rate (prorated inflitration rate)
+- storm_mgd (from rain to pipe)
+- sanitary_mgd (waste water)
+- high_user_mgd (big business/corperations (million gallon per day))
+- ground_water_pumpage (ground water pumped into pipe system)
 - total_annual_flow
 - billing_dc_flow
-- impervious__acres
-- pervious_acres
+- impervious__acres (concrete, etc.)
+- pervious_acres (grass, soil, etc.)
 - pipe_surface_area_acres
 
-For our flow share data, we began with our district_flow_est.csv file which contained data for the above columns. 
+For our flow share data, we began with our district_flow_est.csv file which contained data for the above columns. Describe calculations for District Flow.
 
 ![FS_DistrictFlow](image-11.png)
 
-![alt text](image-12.png)
+Explain billing flow report per jurisdiction.
+
+![FS_suburban_billing](image-12.png)
+
+Lead into Flow Share calculations per jurisdiction.
+
+[take screenshot of output_Length calculation for use in route flow calculations]
+
+![FS_routes](image-13.png)
+![FS_flow_share_calc](image-14.png)
+![FS_routeOutput_input](image-15.png)
 
 overview of data, 
 
@@ -221,14 +232,6 @@ conclusions, and
 
 next steps
 
-
-
-## Written Analysis
-### Data Analysis
-#### Flow processing:
-
-
-#### Labor hour processing:
 
 
 ### Data Visualization
