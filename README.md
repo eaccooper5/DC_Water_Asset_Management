@@ -134,14 +134,14 @@ And the following chart lays out where each jurisdiction meets up along the leng
 #### Risk Prediction (Machine Learning)
 Using supervised machine learning, we used the data from our Inspectionlist3.csv file, separating our 'risk score' from the other features which included: 
 - Seg_ID (ID of each pipe segement)
-- UP_MH ()
-- DS_MH ()
+- UP_MH (upstream manhole)
+- DS_MH (downstream manhole)
 - Dia_Inch (pipe diameter in inches)
 - Shape (pipe shape)
 - Material (the material each pipe segment was constructed from)
 - Length_Ft (pipe length in feet)
-- MWL ()
-- DS ()
+- MWL (mean water level)
+- DS (deposit settled)
 - defects (note of any damage to pipe structure)
 - Video Quality (quality of the investigative footage of pipe structure)
 - Jurisdiction (which jurisdiction (city, county or district) the pipe segement belonged to)
@@ -182,6 +182,36 @@ We took our data from several sources. For labour hours per distinct job we used
 We preprocessed and filtered the data by first uploading it into SQL and joining tables using "location ID." Then we exported that data to .csv and imported it into Python Pandas for further processing.
 
 ![FS_preprocessing](image-6.png)
+
+District Flow data includes:
+- user
+- flow_route
+- Flow_length
+- flow_route_name
+- sewersheds
+- pop
+- emp
+- visitor
+- area_acres
+- infilt_InchMile
+- Infil_mgdinchMile
+- infil_MGD
+- pro_infiltration_rate
+- storm_mgd
+- sanitary_mgd
+- high_user_mgd
+- ground_water_pumpage
+- total_annual_flow
+- billing_dc_flow
+- impervious__acres
+- pervious_acres
+- pipe_surface_area_acres
+
+For our flow share data, we began with our district_flow_est.csv file which contained data for the above columns. 
+
+![FS_DistrictFlow](image-11.png)
+
+![alt text](image-12.png)
 
 overview of data, 
 
