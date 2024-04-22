@@ -164,14 +164,15 @@ We then used the StandardScaler() to scale our data to fit the model and used th
 Prediction and Classification Report: describe low accuracy and fi-scores.
 
 ![ML_dia_4](image-10.png)
+![ML_CM](image-16.png)
 
-With our initial prediction model looking we, we resampled our data using imbalanced learning SMOTE (Synthetic Minority Oversampling Technique) to "create new(artificial) training examples based on the original training examples"(Altaf Khan from [link] quora.com) and reran our classification report. This yielded better results with greater precision and recall scores. Our accuracy scores also improved from 0.62 to 0.78 and where we'd had fi-scores as low as 0.45, our lowest was now 0.65.
+With our initial prediction model looking we, we resampled our data using imbalanced learning SMOTE (Synthetic Minority Oversampling Technique) to "create new(artificial) training examples based on the original training examples"(Altaf Khan from (quora.com)[https://qr.ae/psMpoX]) and reran our classification report. This yielded better results with greater precision and recall scores. Our accuracy scores also improved from 0.74 to 0.78 and where we'd had fi-scores as low as 0.45, our lowest is now 0.65.
 
-[image here]
+![ML_SMOTE](image-17.png)
 
 We then ran our confusion matrix for this resampled model which did show some noise but was more accuracte than our previous.
 
-[image here]
+![ML_CM2](image-18.png)
 
 Further steps: For better risk prediction models we could use more statistical data and be more selective about features used in the model. If 'Video Quality' does not factor into pipe condidition it may not be necessary to consider it in future risk prediction models. We could also run other configurations for future imbalanced learning models to see if any of those yield more favorable results.
 
@@ -208,7 +209,13 @@ District Flow data includes:
 - pervious_acres (grass, soil, etc.)
 - pipe_surface_area_acres
 
-For our flow share data, we began with our district_flow_est.csv file which contained data for the above columns. 
+For our flow share data, we began with our district_flow_est.csv file which contained data for the above columns including user jurisdiction (each jurisdiction responsible for water at each route), flow route, length, and route name, what sewershed were in that jurisdiction, the resident population, the number of people employed in that jurisdiction using the water system, the number of tourists using the water system, and the area in acres of each route. The data also included pipe infiltration information such as area of infiltration, rate of infiltration, prorated infiltration, and how much water per million gallons/day infiltrated the pipe system through cracks or holes. Flow data included the type of drainage into the water system (storm, sanitary, ground water, and high user like commercial flow). Infrastructural data including impervious acres such as concrete which produce less consistent sedimentation or erosion and pervious acres such as grass or soil which would produce more sediment.
+
+For our district flow calculations we first 
+
+![FS_inputs](image-19.png)
+
+let our 'pro_infiltration_rate' equal
 
 ![FS_DistrictFlow](image-11.png)
 
@@ -221,24 +228,38 @@ Lead into Flow Share calculations per jurisdiction.
 [take screenshot of output_Length calculation for use in route flow calculations]
 
 ![FS_routes](image-13.png)
+
 ![FS_flow_share_calc](image-14.png)
+
 ![FS_routeOutput_input](image-15.png)
 
-overview of data, 
-
-approach to goals, 
-
-conclusions, and 
-
-next steps
 
 
 
 ### Data Visualization
+![Image showing table relationships for import into Tableau](image-20.png)
+
+After we processed our data and built our prediction models, we produced visualizations in Tableau using our exported .csv files. Combining InspectionList3.csv with labor_hour.csv, Pl_Coord.csv, summary_flow_share.csv and flow_2023.csv.
+
+![Tableau image of four maps containing pipe risk, inspection cycle, pipe diameter, and mean water flow data](<Pipe info Map.png>)
+
+We built several heatmaps of different data including pipe diameter, segment risk score, inspection cycle, and mean water level. In the Risk Score heatmap items in dark green were in good health with low risk scores of either 1 or 2, pale green was a risk score of 3 and light and dark orange were risk scores in the lower or upper 4s (where light was slightly healthier). Finally, red indicated a risk score of 5 and possible pipe segment failure.
+
+Our Inspection Cycle heatmap showed indicators for high or low inspection rates where routes in red had higher labor hours indicating there was more labor necessary for regular inspections and repairs. Dark green indicated labor hours averaging under 1500 hours, light green indicated averages in the 3000s, light orange was in the 4000s, and red was above 8000 labor hours. So a healthy route would require fewer labor hours and an unhealthy route would require more labor hours for inspections and repairs.
+
+The Pipe Diameter heat map gave us the range of pipe sizes where dark green indicated smaller pipes and red indicated wider pipes. As you can see, the wider pipes are in areas with higher labor hours such as Great Falls which indicates that a bigger pipe might not be the better solution in this case.
+
+Finally, we have our Mean Water Level map where, again, red and orange indicate higher values and dark green indicates lower values. You may see that one of our higher risk areas near Great Falls, has a mean water level of 20 but a pipe diameter of 78 and labor hours of over 8000 and you may notice similar trends of lower water flow through wider pipes indicating that less water and more air in the pipes is not desirable.
+
+![Tableau image of four jurisdiction flow share maps](<Share MP.png>)
 
 
+![Tableau image of compared risk score and cost of risk](<Risk Comparisons.png>)
 
 
+![Tableau image of Risk vs Mean Water Level](<Risk VS MWL.png>)
+
+Finally we compared our risk results with our mean water level data and separated it per route where the red line indicated average risk score, the light green line indicated mean water flow and the dark green line indicated average mean water level per risk score. As you can see, particularly around Route 6 for the Montgomery County share where the average risk score creeps up to 3.5 from 2.857 (at Route 8) and the mean water level drops to 30 as compared with it's Route 8 numbers of 33.44 indicating that more water in the pipes is better than less.
 
 ## Contributing 
 This project was created for learning purposes and is not currently open for contribution.
