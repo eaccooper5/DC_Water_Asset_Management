@@ -118,7 +118,7 @@ import into Python pandas​
 ### Data Retrieval and Processing
 
 #### Introduction
-DC Water asset, the Potomac Interceptor, is a 50 mile long series of pipes that brings water to 1.6 million people from Fairfax, VA to parts of DC and Mongomery County, MD. When a pipe segment is damaged or degrades to the point that it is no longer safe it can be expensive to repair and the costs of those repairs might be shared between jurisdictions depending on whether or not that pipe segment shares territor with a neighbor. Our project took a look at Patomac Interceptor pipe system in order to predict risk to critial water assets and determine the cost impact to various user jurisdictions.
+DC Water asset, the Potomac Interceptor, is a 50 mile long series of pipes that brings water to 1.6 million people from Fairfax, VA to parts of DC and Mongomery County, MD. When a pipe segment is damaged or degrades to the point that it is no longer safe it can be expensive to repair and the costs of those repairs might be shared between jurisdictions depending on whether or not that pipe segment shares territor with a neighbor. Our project took a look at Potomac Interceptor pipe system in order to predict risk to critial water assets and determine the cost impact to various user jurisdictions.
 
 As pictured in the flow chart below, we used SQL to join labor data from IBM Maximo and water flow data from the DC Water Report to calculate flow per user labor hours per location. We then exported that data for use in our cost and flow share analysis and our machine learning risk prediction model per location and created vizualiztions in Tableau.
 
@@ -134,7 +134,7 @@ And the following chart lays out where each jurisdiction meets up along the leng
 
 #### Risk Prediction (Machine Learning)
 Using supervised machine learning, we used the data from our Inspectionlist3.csv file, separating our 'risk score' from the other features which included: 
-- Seg_ID (ID of each pipe segement)
+- Seg_ID (ID of each pipe segment)
 - UP_MH (upstream manhole)
 - DS_MH (downstream manhole)
 - Dia_Inch (pipe diameter in inches)
@@ -185,7 +185,7 @@ We preprocessed and filtered the data by first uploading it into SQL and joining
 ![FS_preprocessing](image-6.png)
 
 District Flow data includes:
-- user (jurisidation)
+- user (jurisidiction)
 - flow_route
 - Flow_length
 - flow_route_name
@@ -208,7 +208,7 @@ District Flow data includes:
 - pervious_acres (grass, soil, etc.)
 - pipe_surface_area_acres
 
-For our flow share data, we began with our district_flow_est.csv file which contained data for the above columns. Describe calculations for District Flow.
+For our flow share data, we began with our district_flow_est.csv file which contained data for the above columns. 
 
 ![FS_DistrictFlow](image-11.png)
 
